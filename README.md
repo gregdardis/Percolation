@@ -1,2 +1,1 @@
-#Princeton Algorithms, Part I course
-Programming assignment 1.
+***This is Assignment 1 from Princeton's Algorithms, Part I course, made using Eclipse.***
