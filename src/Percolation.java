@@ -1,7 +1,10 @@
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
+/**
+ * 
+ * @author Greg Dardis
+ *
+ */
 public class Percolation {
 	
 	private boolean[][] open;
@@ -34,6 +37,10 @@ public class Percolation {
 	public void open(int row, int col) {
 	    if (!rowAndColumnInBounds(row, col)) {
 	        throw new IndexOutOfBoundsException();
+	    }
+	    
+	    if (isOpen(row, col)) {
+	        return;
 	    }
 	    
 	    open[row - 1][col - 1] = true;
@@ -99,15 +106,5 @@ public class Percolation {
 	 */
 	public boolean percolates() {
 	    return UF.connected(virtualTop, virtualBottom);
-	}
-	
-	
-	public static void main(String[] args) {
-	    Percolation testPerc = new Percolation(2);
-	    testPerc.open(1, 1);
-	    testPerc.open(1, 2);
-	    System.out.println(testPerc.percolates());
-	    testPerc.open(2, 1);
-	    System.out.println(testPerc.percolates());
 	}
 }
