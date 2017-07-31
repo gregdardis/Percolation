@@ -80,6 +80,9 @@ public class Percolation {
 	    }
 	}
 	
+	/**
+	 * @return True if the given row and column are on the grid, false otherwise.
+	 */
 	private boolean rowAndColumnInBounds(int row, int col) {
 	    return row > 0 && row <= gridSize && col > 0 && col <= gridSize;
 	}
@@ -91,10 +94,20 @@ public class Percolation {
 	    return numberOpen;
 	}
 	
+	/**
+	 * @return True if the system percolates, false otherwise.
+	 */
 	public boolean percolates() {
-	    // does the system percolate?
+	    return UF.connected(virtualTop, virtualBottom);
 	}
+	
+	
 	public static void main(String[] args) {
-	    // test client (optional)
+	    Percolation testPerc = new Percolation(2);
+	    testPerc.open(1, 1);
+	    testPerc.open(1, 2);
+	    System.out.println(testPerc.percolates());
+	    testPerc.open(2, 1);
+	    System.out.println(testPerc.percolates());
 	}
 }
