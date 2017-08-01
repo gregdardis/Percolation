@@ -1,7 +1,9 @@
 /**
- * This program solves the percolation problem. It keeps track of a 2D array of booleans
- * to see which grid slots are open, and when there is a path of open slots from the top of the grid to
- * the bottom, the method percolates() returns true and the number of open sites can be counted.
+ * This program solves the percolation problem. 
+ * It keeps track of a 2D array of booleans to see which grid slots are open,
+ * and whether or not there is a path of open grid slots from the top to the bottom.
+ * Keeps track of the number of open grid slots.
+ * 
  * Useful for experiments to figure out what percentage of sites need to be open in order for the 
  * array to be guaranteed to be percolated. 
  */
