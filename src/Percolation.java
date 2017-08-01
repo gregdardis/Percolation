@@ -54,27 +54,42 @@ public class Percolation {
 	    open[row - 1][col - 1] = true;
 	    numberOpen++;
 	    
+	    unionWithVirtualTopAndBottom(row, col);
+	    unionWithAdjacentSquares(row, col);
+	}
+	
+	/**
+	 * If the opened square is in the top row of the grid, connects it to the virtualTop.
+	 * Similar for the bottom row of the grid.
+	 */
+	private void unionWithVirtualTopAndBottom(int row, int col) {
 	    if (row == 1) {
-	        weightedQU.union(rowAndColumnTo1D(row, col), virtualTop);
-	    } 
-	    
-	    if (row == gridSize) {
-	        weightedQU.union(rowAndColumnTo1D(row, col), virtualBottom);
-	    }
-	    
+            weightedQU.union(rowAndColumnTo1D(row, col), virtualTop);
+        } 
+        
+        if (row == gridSize) {
+            weightedQU.union(rowAndColumnTo1D(row, col), virtualBottom);
+        }
+	}
+	
+	/**
+	 * Checks if squares on the top, bottom, left and right are open, and unions the square
+	 * at (row, col) with them if they are open.
+	 */
+	private void unionWithAdjacentSquares(int row, int col) {
 	    if (row > 1 && isOpen(row - 1, col)) {
-	        weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row - 1, col));
-	    }
-	    
-	    if (row < gridSize && isOpen(row + 1, col)) {
-	        weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row + 1, col));
-	    }
-	    
-	    if (col > 1 && isOpen(row, col - 1)) {
-	        weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row, col - 1));
-	    }
-	    
-	    if (col < gridSize && isOpen(row, col + 1)) {
+            weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row - 1, col));
+        }
+        
+        if (row < gridSize && isOpen(row + 1, col)) {
+            weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row + 1, col));
+        }
+        
+        if (col > 1 && isOpen(row, col - 1)) {
+            weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row, col - 1));
+        }
+        
+        if (col < gridSize && isOpen(row, col + 1)) {
             weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row, col + 1));
         }
 	}
