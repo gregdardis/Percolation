@@ -20,6 +20,9 @@ public class Percolation {
 	private final WeightedQuickUnionUF weightedQU;
 	
 	public Percolation(int n) {
+	    if (n <= 0) {
+	        throw new IllegalArgumentException();
+	    }
 	    gridSize = n;
 	    virtualBottom = (gridSize * gridSize) + 1;
 		open = new boolean[gridSize][gridSize];

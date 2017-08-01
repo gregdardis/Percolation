@@ -5,6 +5,8 @@ public class PercolationStats {
     
     private final int numTrials;
     private final double[] trials;
+    private double mean;
+    private double stddev;
     
     /**
      * Performs numTrials amount of experiments on a grid of gridSize length and gridSize width.
@@ -36,19 +38,21 @@ public class PercolationStats {
 	}
 	
    public double mean() {
-	   return StdStats.mean(trials);
+       mean = StdStats.mean(trials);
+	   return mean;
    }
    
    public double stddev() {
-	   return StdStats.stddev(trials);
+       stddev = StdStats.stddev(trials);
+	   return stddev;
    }
    
    public double confidenceLo() {
-	   return mean() - (1.96 * stddev() / Math.sqrt(numTrials));
+	   return mean - (1.96 * stddev / Math.sqrt(numTrials));
    }
    
    public double confidenceHi() {
-       return mean() + (1.96 * stddev() / Math.sqrt(numTrials));
+       return mean + (1.96 * stddev / Math.sqrt(numTrials));
    }
    
    public static void main(String[] args) {
@@ -58,8 +62,8 @@ public class PercolationStats {
 	   PercolationStats percolationStats = new PercolationStats(gridSize, numTrials);
 
 	   String confidence = percolationStats.confidenceLo() + ", " + percolationStats.confidenceHi();
-	   System.out.println("mean = " + percolationStats.mean());
-	   System.out.println("stddev = " + percolationStats.stddev());
+	   System.out.println("mean = " + percolationStats.mean);
+	   System.out.println("stddev = " + percolationStats.stddev);
 	   System.out.println("95% confidence interval = " + confidence);
    }
 }
