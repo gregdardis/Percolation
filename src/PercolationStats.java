@@ -3,9 +3,8 @@ import edu.princeton.cs.algs4.StdStats;
 
 public class PercolationStats {
     
-    private int numTrials;
-    private Percolation percolation;
-    private double[] trials;
+    private final int numTrials;
+    private final double[] trials;
     
     /**
      * Performs numTrials amount of experiments on a grid of gridSize length and gridSize width.
@@ -23,8 +22,8 @@ public class PercolationStats {
 	    trials = new double[numTrials];
 	    
 	    for (int i = 0; i < numTrials; i++) {
-	        percolation = new Percolation(gridSize);
-	        while(!percolation.percolates()) {
+	        Percolation percolation = new Percolation(gridSize);
+	        while (!percolation.percolates()) {
 	            int row = StdRandom.uniform(1, gridSize + 1);
 	            int col = StdRandom.uniform(1, gridSize + 1);
 	            percolation.open(row, col);

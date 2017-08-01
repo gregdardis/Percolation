@@ -11,19 +11,19 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-	
+    
 	private boolean[][] open;
-	private int virtualTop = 0;
-	private int virtualBottom;
-	private int gridSize;
+	private final int virtualTop = 0;
+	private final int virtualBottom;
+	private final int gridSize;
 	private int numberOpen;
-	private WeightedQuickUnionUF UF;
+	private final WeightedQuickUnionUF weightedQU;
 	
 	public Percolation(int n) {
 	    gridSize = n;
 	    virtualBottom = (gridSize * gridSize) + 1;
 		open = new boolean[gridSize][gridSize];
-		UF = new WeightedQuickUnionUF((gridSize * gridSize) + 2);
+		weightedQU = new WeightedQuickUnionUF((gridSize * gridSize) + 2);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class Percolation {
 	 */
 	public void open(int row, int col) {
 	    if (!rowAndColumnInBounds(row, col)) {
-	        throw new IndexOutOfBoundsException();
+	        throw new IllegalArgumentException();
 	    }
 	    
 	    if (isOpen(row, col)) {
@@ -52,25 +52,27 @@ public class Percolation {
 	    numberOpen++;
 	    
 	    if (row == 1) {
-	        UF.union(rowAndColumnTo1D(row, col), virtualTop);
-	    } else if (row == gridSize) {
-	        UF.union(rowAndColumnTo1D(row, col), virtualBottom);
+	        weightedQU.union(rowAndColumnTo1D(row, col), virtualTop);
+	    } 
+	    
+	    if (row == gridSize) {
+	        weightedQU.union(rowAndColumnTo1D(row, col), virtualBottom);
 	    }
 	    
 	    if (row > 1 && isOpen(row - 1, col)) {
-	        UF.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row - 1, col));
+	        weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row - 1, col));
 	    }
 	    
 	    if (row < gridSize && isOpen(row + 1, col)) {
-	        UF.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row + 1, col));
+	        weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row + 1, col));
 	    }
 	    
 	    if (col > 1 && isOpen(row, col - 1)) {
-	        UF.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row, col - 1));
+	        weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row, col - 1));
 	    }
 	    
 	    if (col < gridSize && isOpen(row, col + 1)) {
-            UF.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row, col + 1));
+            weightedQU.union(rowAndColumnTo1D(row, col), rowAndColumnTo1D(row, col + 1));
         }
 	}
 	
@@ -78,7 +80,12 @@ public class Percolation {
 	 * @return True if the square corresponding to the given row/column is open, false otherwise.
 	 */
 	public boolean isOpen(int row, int col) {
-	    return open[row - 1][col - 1];
+	    if (rowAndColumnInBounds(row, col)) {
+	        return open[row - 1][col - 1];
+	    } else {
+	        throw new IllegalArgumentException();
+	    }
+	    
 	}
 	
 	/**
@@ -86,9 +93,9 @@ public class Percolation {
 	 */
 	public boolean isFull(int row, int col) {
 	    if (rowAndColumnInBounds(row, col)) {
-	        return UF.connected(virtualTop, rowAndColumnTo1D(row, col));
+	        return weightedQU.connected(virtualTop, rowAndColumnTo1D(row, col));
 	    } else {
-	        throw new IndexOutOfBoundsException();
+	        throw new IllegalArgumentException();
 	    }
 	}
 	
@@ -110,6 +117,6 @@ public class Percolation {
 	 * @return True if the system percolates, false otherwise.
 	 */
 	public boolean percolates() {
-	    return UF.connected(virtualTop, virtualBottom);
+	    return weightedQU.connected(virtualTop, virtualBottom);
 	}
 }
