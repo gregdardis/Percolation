@@ -1,3 +1,40 @@
 ***This is Assignment 1 from Princeton's Algorithms Part I course, made using Eclipse.***
 
-TODO: add command line instructions for launching this program with manual number of trials/grid size, as well as for testing it with the given testing folder.
+# Description
+This program models percolation which is found everywhere, from liquid seeping through openings to electricity going through conductors within insulation.  
+
+The Percolation class uses weighted quick union union-find to connect adjacent open squares in a grid until the top row is connected to the bottom row of squares, or in other words, until the system percolates.   
+
+The PercolationStats class utilizes the Percolation class to run a series of trials on a grid  of the requested size and gives statistics on the percentage of open squares in the grid as soon as the system percolates. PercolationStats can return the mean percentage of open squares over all of the trials, the standard deviation of that percentage, as well as a 95% confidence interval.  
+
+The PercolationVisualizer class utilizes Percolation to show an animation of what is actually happening. The PercolationVisualizer class was provided in the assignment details, I did not write it.
+
+# Command Line Instructions
+cd src/
+## Windows:
+  
+Compile:  
+ `javac -cp ".;../algs4.jar" *.java`  
+
+Run Visualizer:  
+ `java -cp ".;../algs4.jar" PercolationVisualizer ../testing/<txt-file-name>`  
+   
+   note: currently broken, need to fix.  
+Run with custom number of trials on custom grid size for statistics:  
+`java -cp ".;../algs4.jar" PercolationStats gridSize numTrials`
+
+## Mac:
+
+Compile:  
+ `javac -cp ".:../algs4.jar" *.java`
+
+Run Visualizer:  
+`java -cp ".:../algs4.jar" PercolationVisualizer ../testing/<txt-file-name>`  
+
+note: currently broken, need to fix.  
+Run with custom number of trials on custom grid size for statistics:  
+`java -cp ".:../algs4.jar" PercolationStats gridSize numTrials`  
+
+
+
+
