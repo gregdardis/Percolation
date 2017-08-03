@@ -18,8 +18,7 @@ Compile:
 
 Run Visualizer:  
  `java -cp ".;../algs4.jar" PercolationVisualizer ../testing/<txt-file-name>`  
-   
-   note: currently broken, need to fix.  
+ 
 Run with custom number of trials on custom grid size for statistics:  
 `java -cp ".;../algs4.jar" PercolationStats gridSize numTrials`
 
@@ -31,7 +30,6 @@ Compile:
 Run Visualizer:  
 `java -cp ".:../algs4.jar" PercolationVisualizer ../testing/<txt-file-name>`  
 
-note: currently broken, need to fix.  
 Run with custom number of trials on custom grid size for statistics:  
 `java -cp ".:../algs4.jar" PercolationStats gridSize numTrials`  
 
