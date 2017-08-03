@@ -1,4 +1,4 @@
-***This is Assignment 1 from Princeton's Algorithms Part I course, made using Eclipse.***
+***This is Assignment 1 from Princeton's Algorithms Part I course, made using Eclipse, version: Neon.2 Release (4.6.2)*.**
 
 # Description
 This program models percolation which is found everywhere, from liquid seeping through openings to electricity going through conductors within insulation.  
