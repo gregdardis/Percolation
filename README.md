@@ -5,7 +5,7 @@ This program models percolation which is found everywhere, from liquid seeping t
 
 The Percolation class uses weighted quick union union-find to connect adjacent open squares in a grid until the top row is connected to the bottom row of squares, or in other words, until the system percolates.   
 
-The PercolationStats class utilizes the Percolation class to run a series of trials on a grid  of the requested size and gives statistics on the percentage of open squares in the grid as soon as the system percolates. PercolationStats can return the mean percentage of open squares over all of the trials, the standard deviation of that percentage, as well as a 95% confidence interval.  
+The PercolationStats class utilizes the Percolation class to run a series of randomized trials on a grid  of the requested size. In these trials random squares will be opened until the system percolates, then statistics are given on the percentage of open squares in the grid at that point. PercolationStats can return the mean percentage of open squares over all of the trials, the standard deviation of that percentage, as well as a 95% confidence interval.  
 
 The PercolationVisualizer class utilizes Percolation to show an animation of what is actually happening. The PercolationVisualizer class was provided in the assignment details, I did not write it.
 
